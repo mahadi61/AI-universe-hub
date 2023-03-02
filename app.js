@@ -9,16 +9,16 @@ const displayData = (data) =>{
     // console.log(data);
     const dataArray = data;
     dataArray.forEach(singleData =>{
-        console.log(singleData);
+        console.log(singleData.published_in);
 
 
         const aiContainer = document.getElementById('ai-container');
         aiContainer.innerHTML += `
         <div class="col">
             <div class="card h-100 p-3">
-              <img src="..." class="card-img-top" alt="..." />
+              <img src="${singleData.image}" class="card-img-top" alt="..." />
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">${singleData.name}</h5>
                 <p class="card-text">
                   This is a wider card with supporting text below as a natural
                   lead-in to additional content. This content is a little bit
@@ -29,9 +29,10 @@ const displayData = (data) =>{
               <div class="d-flex justify-content-between align-items-center">
                 <div>
                   <p class="fw-bold">ChatGPT</p>
+                  <p><i class="fa-solid fa-calendar-days"></i> ${singleData.published_in}</p>
                 </div>
                 <div>
-                  <button class="btn btn-primary">Details</button>
+                <span><i class="fa-solid fa-arrow-right text-danger"></i></span>
                 </div>
               </div>
             </div>
