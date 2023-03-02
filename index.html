@@ -12,7 +12,7 @@
       crossorigin="anonymous"
     />
   </head>
-  <body>
+  <body onload="fetchLoadDate()">
     <!-- header section start -->
     <header>
       <section
@@ -29,7 +29,11 @@
     <!-- header section end -->
     <!-- main section start -->
     <main>
-      <section id="ai-container" class="container"></section>
+      <section class="container mt-3">
+        <!-- card -->
+        <div id="ai-container" class="row row-cols-1 row-cols-md-3 g-4"></div>
+        <!-- card -->
+      </section>
     </main>
     <!-- main section end -->
 
