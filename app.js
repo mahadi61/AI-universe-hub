@@ -142,9 +142,9 @@ modalBody.innerHTML = `
                   >
                     <img src="${data.image_link[0]}" class="img-fluid" alt="" />
                     <div class="">
-                      <h5 class="text-center card-title">${data.input_output_examples[0].input}</h5>
+                      <h5 class="text-center card-title">${data.input_output_examples[0] ? data.input_output_examples[0].input : "Can you give any example?"}</h5>
                       <p class="card-text">
-                        ${data.input_output_examples[0].output}
+                        ${data.input_output_examples[0] ? data.input_output_examples[0].output : "No! Not yet! Take a break!!"}
                       </p>
                     </div>
                   </div>
