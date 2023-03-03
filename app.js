@@ -87,7 +87,7 @@ const loadAiDetails = async(id) =>{
   }
 
 const displayAiDetails = (data) =>{
-console.log(data.input_output_examples[0].output);
+console.log(data.pricing[2]);
 
 const featuresArray = data.features;
 for(const feature in featuresArray){
@@ -102,30 +102,28 @@ const modalBody = document.getElementById('modal-body-details');
 modalBody.innerHTML = `
 <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col">
-                  <div
-                    class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded"
-                  >
+                  <div class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
                     <div class="">
                       <p class="fw-bold">
                         ${data.description}
                       </p>
-                      <div
-                        class="d-flex justify-content-between align-items-center gap-2"
-                      >
-                        <div class="border rounded-3 p-2 text-success">
-                          $10/month Basic
+                      <div style="height: 120px;" class="d-flex justify-content-between align-items-center  gap-2">
+                        <div class="h-100 border rounded-3 p-2 text-success">
+                          
+                          <span>${data.pricing[0] ? data.pricing[0].price : "Free of cost"}</span>
+                          <span>${data.pricing[0].plan}</span>
                         </div>
-                        <div class="border rounded-3 p-2 text-warning">
-                          $10/month Basic
+                        <div class="h-100 border rounded-3 p-2 text-warning">
+                        <span>${data.pricing[1] ? data.pricing[1].price : "Free of cost"}</span>
+                        <span>${data.pricing[1].plan}</span> 
                         </div>
-                        <div class="border rounded-3 p-2 text-danger">
-                          $10/month Basic
+                        <div class="h-100 border rounded-3 p-2 text-danger">
+                        <span>${data.pricing[2] ? data.pricing[2].price : "Free of cost"}</span>
+                        <span>${data.pricing[2].plan}</span> 
                         </div>
                       </div>
                       <!-- feature -->
-                      <div
-                        class="d-flex justify-content-between align-items-center gap-2"
-                      >
+                      <div class="d-flex justify-content-between align-items-center gap-2">
                         <div>
                           <h4>Features</h4>
                         </div>
@@ -137,9 +135,7 @@ modalBody.innerHTML = `
                   </div>
                 </div>
                 <div class="col">
-                  <div
-                    class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded"
-                  >
+                  <div class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
                     <img src="${data.image_link[0]}" class="img-fluid" alt="" />
                     <div class="">
                       <h5 class="text-center card-title">${data.input_output_examples[0] ? data.input_output_examples[0].input : "Can you give any example?"}</h5>
