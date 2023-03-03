@@ -26,25 +26,19 @@ const displayData = (data ,dataLimit) =>{
     
     
     dataArray.forEach(singleData =>{
-        // console.log(singleData.id);
-      /*   const features = () =>{
-          const featuresArray = singleData.features;
-          for (const feature of featuresArray) {
-          return feature;
-        }
-        }
-        const featureList = features();
-        console.log(featureList); */
-        
+        // console.log(singleData.features[0]);
+
         aiContainer.innerHTML += `
         <div class="col">
             <div class="card h-100 p-3">
               <img src="${singleData.image}" class="card-img-top rounded" alt="..." />
               <div class="mt-2">
                 <h5 class="card-title fw-bold">Features</h5>
-                <p class="card-text">
-                  
-                </p>
+                <ol id="features-body" class="card-text">
+                <li>${singleData.features[0]}</li>
+                <li>${singleData.features[1]}</li>
+                <li>${singleData.features[2]}</li>
+                </ol>
               </div>
               <hr />
               <div class="d-flex justify-content-between align-items-center">
@@ -61,8 +55,6 @@ const displayData = (data ,dataLimit) =>{
             </div>
           </div>
         `
-       
-
        
     })
 
