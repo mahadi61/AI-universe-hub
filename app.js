@@ -10,7 +10,7 @@ const showAllBtn = document.getElementById('show-all-btn');
 const displayData = (data ,dataLimit) =>{
  // loader
  toggleSpinner(true);
-    // console.log(data);
+   
     let dataArray = data;
     const aiContainer = document.getElementById('ai-container');
     // show only 6 ai item
@@ -80,14 +80,20 @@ const loadAiDetails = async(id) =>{
 
 const displayAiDetails = (data) =>{
 
-
-
+  const accuracy = data.accuracy.score;
+  const accuracyPercentage = accuracy * 100;
+  // console.log(accuracyPercentage);
+ /*  if(accuracyPercentage === 0){
+    const accuracyBody = document.getElementById('accuracy');
+    accuracyBody.classList.add('d-none');
+  }
+ */
 
 // single modal 1
 const modalBody = document.getElementById('modal-body-details');
 
 modalBody.innerHTML = `
-<div class="row row-cols-1 row-cols-md-2 g-4">
+          <div class="row row-cols-1 row-cols-md-2 g-4">
                 <div class="col">
                   <div class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
                     <div class="">
@@ -127,9 +133,12 @@ modalBody.innerHTML = `
                     </div>
                   </div>
                 </div>
-                <div class="col">
-                  <div class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
-                    <img src="${data.image_link[0]}" class="img-fluid" alt="" />
+                <div class="col  ">
+                  <div class="d-flex flex-column justify-content-between align-items-center gap-4 border  border-black shadow p-3 mb-5 bg-body-tertiary rounded">
+                    <div class="bg-danger-subtle position-relative">
+                        <img src="${data.image_link[0]}" class="img-fluid" alt="" />
+                        <span id="accuracy" class="bg-danger-subtle p-1 rounded position-absolute top-0 end-0">${accuracyPercentage} % Accuracy</span>
+                    </div>
                     <div class="">
                       <h5 class="text-center card-title">${data.input_output_examples[0] ? data.input_output_examples[0].input : "Can you give any example?"}</h5>
                       <p class="card-text">
@@ -140,7 +149,6 @@ modalBody.innerHTML = `
                 </div>
               </div>
 `
-
 
 const featuresArray = data.features;
 for(const feature in featuresArray){
@@ -158,7 +166,7 @@ integrationsArray.forEach(integrations =>{
   modalIntegrations.innerHTML += `
   <li>${integrations ? integrations : "No integrations"}</li>
   `
-  // console.log(integrations);
+  
 })
 
 
@@ -168,4 +176,3 @@ integrationsArray.forEach(integrations =>{
 
 
 
-// fetchLoadDate();
