@@ -23,17 +23,10 @@ const displayData = (data ,dataLimit) =>{
       dataArray = dataArray.slice(0, 6);
       showAllBtn.classList.remove('d-none');
     }
-    /*  const showAll = document.getElementById('show-all');
-    if(dataLimit && phones.length > 10){
-      phones = phones.slice(0,10);
-      showAll.classList.remove('d-none');
-    }
-    else{
-      showAll.classList.add('d-none');
-    } */
+    
     
     dataArray.forEach(singleData =>{
-        // console.log(singleData.features);
+        // console.log(singleData.id);
       /*   const features = () =>{
           const featuresArray = singleData.features;
           for (const feature of featuresArray) {
@@ -60,19 +53,15 @@ const displayData = (data ,dataLimit) =>{
                   <p><i class="fa-solid fa-calendar-days"></i> ${singleData.published_in}</p>
                 </div>
                 <div>
-                <a  data-bs-toggle="modal"
-                data-bs-target="#detailsModal"><i class="fa-solid fa-arrow-right text-danger"></i></a>
+                <button class="bg-danger-subtle border border-0 rounded-circle" onclick="loadAiDetails('${singleData.id}')" data-bs-toggle="modal"
+                data-bs-target="#detailsModal"><i class="fa-solid fa-arrow-right text-danger"></i></button>
                 
                 </div>
               </div>
             </div>
           </div>
         `
-        const modalContainer = document.getElementById('modal-body-details');
-        const modalDiv = document.createElement('div');
-        modalDiv.innerHTML = `
-        
-        `
+       
 
        
     })
@@ -83,12 +72,90 @@ const displayData = (data ,dataLimit) =>{
 
 
 const showRestAi = () =>{
- 
-//  close show all btn
+ //  close show all btn
   showAllBtn.classList.add('d-none');
- 
-  
+   
   fetchLoadDate(13);
+}
+
+// modal api
+const loadAiDetails = async(id) =>{
+  const url = `https://openapi.programming-hero.com/api/ai/tool/${id}`
+  fetch(url)
+  .then(res => res.json())
+  .then(data => displayAiDetails(data.data))
+  }
+
+const displayAiDetails = (data) =>{
+console.log(data.input_output_examples[0].output);
+
+const featuresArray = data.features;
+for(const feature in featuresArray){
+  const featureList = featuresArray[feature];
+
+  // console.log();
+}
+
+// single modal 1
+const modalBody = document.getElementById('modal-body-details');
+
+modalBody.innerHTML = `
+<div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                  <div
+                    class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded"
+                  >
+                    <div class="">
+                      <p class="fw-bold">
+                        ${data.description}
+                      </p>
+                      <div
+                        class="d-flex justify-content-between align-items-center gap-2"
+                      >
+                        <div class="border rounded-3 p-2 text-success">
+                          $10/month Basic
+                        </div>
+                        <div class="border rounded-3 p-2 text-warning">
+                          $10/month Basic
+                        </div>
+                        <div class="border rounded-3 p-2 text-danger">
+                          $10/month Basic
+                        </div>
+                      </div>
+                      <!-- feature -->
+                      <div
+                        class="d-flex justify-content-between align-items-center gap-2"
+                      >
+                        <div>
+                          <h4>Features</h4>
+                        </div>
+                        <div>
+                          <h4>Integrations</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded"
+                  >
+                    <img src="${data.image_link[0]}" class="img-fluid" alt="" />
+                    <div class="">
+                      <h5 class="text-center card-title">${data.input_output_examples[0].input}</h5>
+                      <p class="card-text">
+                        ${data.input_output_examples[0].output}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+`
+
+
+
+
+
 }
 
 
