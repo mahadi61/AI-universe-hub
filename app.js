@@ -87,14 +87,9 @@ const loadAiDetails = async(id) =>{
   }
 
 const displayAiDetails = (data) =>{
-console.log(data.pricing[2]);
 
-const featuresArray = data.features;
-for(const feature in featuresArray){
-  const featureList = featuresArray[feature];
 
-  // console.log();
-}
+
 
 // single modal 1
 const modalBody = document.getElementById('modal-body-details');
@@ -126,9 +121,15 @@ modalBody.innerHTML = `
                       <div class="d-flex justify-content-between align-items-center gap-2">
                         <div>
                           <h4>Features</h4>
+                          <ol id="modal-feature">
+      
+                          </ol>
                         </div>
                         <div>
                           <h4>Integrations</h4>
+                          <ol id="modal-integrations">
+      
+                          </ol>
                         </div>
                       </div>
                     </div>
@@ -149,6 +150,24 @@ modalBody.innerHTML = `
 `
 
 
+const featuresArray = data.features;
+for(const feature in featuresArray){
+  const featureList = featuresArray[feature].feature_name;
+   const modalFeature = document.getElementById('modal-feature');
+   modalFeature.innerHTML += `
+   <li>${featureList ? featureList : "No features"}</li>
+   `
+  
+}
+
+const integrationsArray = data.integrations;
+integrationsArray.forEach(integrations =>{
+  const modalIntegrations = document.getElementById('modal-integrations');
+  modalIntegrations.innerHTML += `
+  <li>${integrations ? integrations : "No integrations"}</li>
+  `
+  // console.log(integrations);
+})
 
 
 
