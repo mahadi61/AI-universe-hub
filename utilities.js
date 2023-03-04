@@ -7,3 +7,5 @@ const toggleSpinner = isLoading =>{
       loaderSection.classList.add('d-none');
     }
   }
+
+  

@@ -1,17 +1,16 @@
-const fetchLoadDate = (dataLimit) =>{
+const fetchLoadDate = (dataLimit, isSort) =>{
  // loader
  toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displayData(data.data.tools, dataLimit))
+    .then(data => displayData(data.data.tools, dataLimit, isSort))
 }
 // get the button to show all rest data
 const showAllBtn = document.getElementById('show-all-btn');
 
-const displayData = (data ,dataLimit) =>{
+const displayData = (data ,dataLimit, isSort) =>{
 
-   
     let dataArray = data;
     const aiContainer = document.getElementById('ai-container');
     // show only 6 ai item
@@ -19,15 +18,24 @@ const displayData = (data ,dataLimit) =>{
       dataArray = data
       showAllBtn.classList.add('d-none');
       aiContainer.innerHTML = '';
+
+     
     }
     else{
       dataArray = dataArray.slice(0, 6);
       showAllBtn.classList.remove('d-none');
     }
-    
-    
+     //  array sorting by date
+    if(isSort){
+      dataArray.sort((a, b) => {
+        return new Date(b.published_in) -  new Date(a.published_in);
+          
+        })
+    }
+   
+    aiContainer.innerHTML = "";
     dataArray.forEach(singleData =>{
-        // console.log(singleData.features[0]);
+        
 
         aiContainer.innerHTML += `
         <div class="col">
@@ -63,7 +71,14 @@ const displayData = (data ,dataLimit) =>{
     toggleSpinner(false);
 }
 
+// sorting array
+const sortByDate = () =>{
+  
+  fetchLoadDate(undefined, true);
 
+}
+
+// show rest ai data
 const showRestAi = () =>{
  //  close show all btn
   showAllBtn.classList.add('d-none');
@@ -79,21 +94,13 @@ const loadAiDetails = async(id) =>{
   .then(data => displayAiDetails(data.data))
   }
 
+  // ai details display in modal
 const displayAiDetails = (data) =>{
 
   const accuracy = data.accuracy.score;
   const accuracyPercentage = accuracy * 100;
   
-  // const dataPriceType = typeof(dataPrice);
-  // console.log(dataPriceType);
-  // try{
-  //   const dataPrice = data.pricing[0].price;
-  //   console.log(dataPrice);
-  // }
-  // catch(error){
-  //   console.log(error);
-
-  // }
+ 
 const data2Price = () =>{
   
   if(data.pricing === null ){
