@@ -109,14 +109,14 @@ const data2Price = () =>{
 const modalBody = document.getElementById('modal-body-details');
 
 modalBody.innerHTML = `
-          <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col">
+          <div class="h-100 row row-cols-1 row-cols-md-2 g-4">
+                <div class="h-100 col">
                   <div class="border border-black shadow p-3 mb-5 bg-body-tertiary rounded">
                     <div class="">
                       <p class="fw-bold">
                         ${data.description}
                       </p>
-                      <div style="height: 120px;" class="d-flex  justify-content-between align-items-center w-100  gap-2">
+                      <div style="height: 120px;" class="price-area d-flex  justify-content-between align-items-center w-100  gap-2">
                         <div class="h-100  border rounded-3 p-2 text-success">
                           
                           <span>${data.pricing ? data.pricing[0].price : "Free of cost"}</span>
@@ -132,7 +132,7 @@ modalBody.innerHTML = `
                         </div>
                       </div>
                       <!-- feature -->
-                      <div class="d-flex justify-content-between align-items-center gap-2">
+                      <div class="features-integrations d-flex justify-content-between align-items-center gap-2">
                         <div>
                           <h4>Features</h4>
                           <ol id="modal-feature">
@@ -149,8 +149,8 @@ modalBody.innerHTML = `
                     </div>
                   </div>
                 </div>
-                <div class="col  ">
-                  <div class="d-flex flex-column justify-content-between align-items-center gap-4 border  border-black shadow p-3 mb-5 bg-body-tertiary rounded">
+                <div class="col  h-100">
+                  <div class="h-100 d-flex flex-column justify-content-center align-items-end gap-4 border  border-black shadow p-3 mb-5 bg-body-tertiary rounded">
                     <div class="bg-danger-subtle position-relative">
                         <img src="${data.image_link[0]}" class="img-fluid" alt="" />
                         <span id="accuracy" class="bg-danger-subtle p-1 rounded position-absolute top-0 end-0">${accuracyPercentage} % Accuracy</span>
