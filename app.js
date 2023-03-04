@@ -1,4 +1,6 @@
 const fetchLoadDate = (dataLimit) =>{
+ // loader
+ toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/ai/tools`;
     fetch(url)
     .then(res => res.json())
@@ -8,8 +10,7 @@ const fetchLoadDate = (dataLimit) =>{
 const showAllBtn = document.getElementById('show-all-btn');
 
 const displayData = (data ,dataLimit) =>{
- // loader
- toggleSpinner(true);
+
    
     let dataArray = data;
     const aiContainer = document.getElementById('ai-container');
@@ -82,12 +83,20 @@ const displayAiDetails = (data) =>{
 
   const accuracy = data.accuracy.score;
   const accuracyPercentage = accuracy * 100;
-  // console.log(accuracyPercentage);
- /*  if(accuracyPercentage === 0){
-    const accuracyBody = document.getElementById('accuracy');
-    accuracyBody.classList.add('d-none');
-  }
- */
+  
+  // const dataPriceType = typeof(dataPrice);
+  // console.log(dataPriceType);
+  // try{
+  //   const dataPrice = data.pricing[0].price;
+  //   console.log(dataPrice);
+  // }
+  // catch(error){
+  //   console.log(error);
+
+  // }
+  /* if(data.pricing[0].price === null ){
+    console("null");
+  } */
 
 // single modal 1
 const modalBody = document.getElementById('modal-body-details');
@@ -149,6 +158,14 @@ modalBody.innerHTML = `
                 </div>
               </div>
 `
+
+
+const accuracyBody = document.getElementById('accuracy');
+
+if(accuracy === null){
+  
+    accuracyBody.classList.add('d-none');
+  }
 
 const featuresArray = data.features;
 for(const feature in featuresArray){
