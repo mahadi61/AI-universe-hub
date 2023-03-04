@@ -116,19 +116,19 @@ modalBody.innerHTML = `
                       <p class="fw-bold">
                         ${data.description}
                       </p>
-                      <div style="height: 120px;" class="d-flex justify-content-between align-items-center  gap-2">
-                        <div class="h-100 border rounded-3 p-2 text-success">
+                      <div style="height: 120px;" class="d-flex  justify-content-between align-items-center w-100  gap-2">
+                        <div class="h-100  border rounded-3 p-2 text-success">
                           
                           <span>${data.pricing ? data.pricing[0].price : "Free of cost"}</span>
                           <span>${data.pricing ? data.pricing[0].plan : " "}</span>
                         </div>
                         <div class="h-100 border rounded-3 p-2 text-warning">
-                        <span>${data2Price()}</span>
-                        <span>${data.pricing ? data.pricing[1].plan : " "}</span> 
+                          <span>${data2Price()}</span>
+                          <span>${data.pricing ? data.pricing[1].plan : " "}</span> 
                         </div>
                         <div class="h-100 border rounded-3 p-2 text-danger">
-                        <span>${data.pricing ? data.pricing[2].price : "Free of cost"}</span>
-                        <span>${data.pricing ? data.pricing[2].plan : ""}</span> 
+                          <span>${data.pricing ? data.pricing[2].price : "Free of cost"}</span>
+                          <span>${data.pricing ? data.pricing[2].plan : ""}</span> 
                         </div>
                       </div>
                       <!-- feature -->
