@@ -94,9 +94,16 @@ const displayAiDetails = (data) =>{
   //   console.log(error);
 
   // }
-  /* if(data.pricing[0].price === null ){
-    console("null");
-  } */
+const data2Price = () =>{
+  
+  if(data.pricing === null ){
+   return "Free of cost"
+  } 
+  else{
+    const dataPrice2 = data.pricing ? data.pricing[1].price : "Free of cost"
+    return dataPrice2;
+  }
+}
 
 // single modal 1
 const modalBody = document.getElementById('modal-body-details');
@@ -112,16 +119,16 @@ modalBody.innerHTML = `
                       <div style="height: 120px;" class="d-flex justify-content-between align-items-center  gap-2">
                         <div class="h-100 border rounded-3 p-2 text-success">
                           
-                          <span>${data.pricing[0] ? data.pricing[0].price : "Free of cost"}</span>
-                          <span>${data.pricing[0].plan}</span>
+                          <span>${data.pricing ? data.pricing[0].price : "Free of cost"}</span>
+                          <span>${data.pricing ? data.pricing[0].plan : " "}</span>
                         </div>
                         <div class="h-100 border rounded-3 p-2 text-warning">
-                        <span>${data.pricing[1] ? data.pricing[1].price : "Free of cost"}</span>
-                        <span>${data.pricing[1].plan}</span> 
+                        <span>${data2Price()}</span>
+                        <span>${data.pricing ? data.pricing[1].plan : " "}</span> 
                         </div>
                         <div class="h-100 border rounded-3 p-2 text-danger">
-                        <span>${data.pricing[2] ? data.pricing[2].price : "Free of cost"}</span>
-                        <span>${data.pricing[2].plan}</span> 
+                        <span>${data.pricing ? data.pricing[2].price : "Free of cost"}</span>
+                        <span>${data.pricing ? data.pricing[2].plan : ""}</span> 
                         </div>
                       </div>
                       <!-- feature -->
@@ -149,9 +156,9 @@ modalBody.innerHTML = `
                         <span id="accuracy" class="bg-danger-subtle p-1 rounded position-absolute top-0 end-0">${accuracyPercentage} % Accuracy</span>
                     </div>
                     <div class="">
-                      <h5 class="text-center card-title">${data.input_output_examples[0] ? data.input_output_examples[0].input : "Can you give any example?"}</h5>
+                      <h5 class="text-center card-title">${data.input_output_examples ? data.input_output_examples[0].input : "Can you give any example?"}</h5>
                       <p class="card-text">
-                        ${data.input_output_examples[0] ? data.input_output_examples[0].output : "No! Not yet! Take a break!!"}
+                        ${data.input_output_examples ? data.input_output_examples[0].output : "No! Not yet! Take a break!!"}
                       </p>
                     </div>
                   </div>
@@ -177,14 +184,24 @@ for(const feature in featuresArray){
   
 }
 
+
+
+const modalIntegrations = document.getElementById('modal-integrations');
 const integrationsArray = data.integrations;
-integrationsArray.forEach(integrations =>{
-  const modalIntegrations = document.getElementById('modal-integrations');
+if(integrationsArray === null){
   modalIntegrations.innerHTML += `
-  <li>${integrations ? integrations : "No integrations"}</li>
+  <li>No integrations</li>
   `
-  
-})
+}
+else{
+  integrationsArray.forEach(integrations =>{
+    modalIntegrations.innerHTML += `
+    <li>${integrations}</li>
+    `
+    
+  })
+}
+
 
 
 
